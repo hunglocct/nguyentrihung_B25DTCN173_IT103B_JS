@@ -1,5 +1,5 @@
 let students = ["Quý", "Nam", "Lan", "Hùng", "Nam"]
-
+let element
 console.log("Sau đảo ngược có làm thay đổi mảng gốc", students.reverse());
 
 if (students.includes("Lan") == true) {
@@ -17,6 +17,10 @@ if (students.indexOf("Nam") == -1) {
 
 }
 let money = [100, 200, 300, 400], sum = 0;
+for (const element of students) {
+    console.log(element);
+    
+}
 for (let index = 0; index < money.length; index++) {
     console.log("giá trị", money[index]);
 
