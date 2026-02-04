@@ -17,14 +17,13 @@ if (students.indexOf("Nam") == -1) {
 
 }
 let money = [100, 200, 300, 400], sum = 0;
-for (const element of students) {
+for (const element of money) {
     console.log(element);
     
 }
 for (let index = 0; index < money.length; index++) {
-    console.log("giá trị", money[index]);
+    console.log("giá trị", money[index],"vị trí", index);
 
-    console.log("vị trí", index);
     if (index % 2 == 0 || index == 0) {
 
         sum += money[index]
