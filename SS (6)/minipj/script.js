@@ -48,7 +48,11 @@ Mời bạn chọn chức năng (1-7):
                 text = prompt("Nhâp Sl lớn sách cách nhau dấu ,")
                 books.push(...text.split(","));
                 for (let index = 0; index < books.length; index++) {
-                    books[index].trim()
+                   books[index] = books[index].trim()
+                   if (books[index]=="") {
+                    books.splice(index,1)
+                    index--
+                   }
 
                 }
                 alert(`Số lượng sách thực tế đã được thêm vào kho ${books.length}`);
