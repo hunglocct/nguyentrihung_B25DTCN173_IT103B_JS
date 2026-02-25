@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inventory Management System Presentation - Black Edition</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Lato:wght@400;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        /* 1. GLOBAL SETUP */
+        * { box-sizing: border-box; }
+        p { margin: 0; margin-bottom: 10px; }
+        body { background-color: #000000; display: grid; gap: 40px; grid-template-columns: 1fr; margin: 0; min-height: 100vh; padding: 40px 0; place-items: center; }
+
+        .slide-container {
+            align-items: center;
+            background-color: #000000; /* Nền đen tuyệt đối */
+            color: #f8fafc;
+            display: flex;
+            flex-direction: column;
+            font-family: 'Lato', sans-serif;
+            height: 720px;
+            justify-content: center;
+            overflow: hidden;
+            padding: 80px;
+            position: relative;
+            width: 1280px;
+            border: 1px solid #1e293b; /* Viền nhẹ để phân tách slide */
+        }
+
+        /* ABSTRACT BACKGROUND DECORATION */
+        .slide-container::before {
+            content: '';
+            position: absolute;
+            top: -10%;
+            right: -10%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(247, 223, 30, 0.08) 0%, transparent 70%);
+            z-index: 0;
+        }
+
+        .slide-container::after {
+            content: '';
+            position: absolute;
+            bottom: 30px;
+            right: 40px;
+            font-family: 'JetBrains Mono';
+            font-size: 14px;
+            color: rgba(247, 223, 30, 0.4);
+            content: 'Nhóm 5';
+        }
+
+        .slide-container > * { position: relative; z-index: 1; }
+
+        /* 2. TYPOGRAPHY */
+        h1, h2, h3 { color: #ffffff; font-family: 'Poppins', sans-serif; font-weight: 700; margin: 0; }
+        .slide-title { font-size: 48px; margin-bottom: 50px; width: 100%; text-align: left; border-left: 10px solid #f7df1e; padding-left: 25px; text-transform: uppercase; letter-spacing: 3px; }
+        h3 { font-size: 28px; color: #f7df1e; margin-bottom: 15px; }
+        p, li { font-size: 20px; line-height: 1.7; color: #cbd5e1; }
+        code { font-family: 'JetBrains Mono', monospace; background: #1a1a1a; padding: 2px 8px; border-radius: 4px; color: #f7df1e; border: 1px solid #333; }
+        .code-block { font-family: 'JetBrains Mono', monospace; background: #0a0a0a; padding: 25px; border-radius: 12px; border: 1px solid #f7df1e33; color: #f7df1e; white-space: pre; margin: 15px 0; font-size: 18px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+
+        /* 3. LAYOUT DEFINITIONS */
+        .content-area { display: flex; flex-direction: column; flex-grow: 1; width: 100%; justify-content: center; }
+        .two-column { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; width: 100%; align-items: start; }
+        .tiled-content { display: flex; gap: 30px; justify-content: center; width: 100%; }
+        .tile { background: #111111; border-radius: 16px; padding: 35px; flex: 1; text-align: left; border: 1px solid #222; transition: transform 0.3s ease; }
+        .tile:hover { transform: translateY(-5px); border-color: #f7df1e; }
+        .icon { font-size: 45px; color: #f7df1e; margin-bottom: 25px; }
+        
+        /* Bullet Lists */
+        .bullet-list { list-style: none; padding: 0; }
+        .bullet-list li { position: relative; padding-left: 45px; margin-bottom: 20px; }
+        .bullet-list i { position: absolute; left: 0; top: 6px; color: #f7df1e; font-size: 22px; }
+
+        /* Image Containers */
+        .image-wrapper { border-radius: 20px; overflow: hidden; border: 1px solid #333; height: 400px; width: 100%; filter: grayscale(20%); }
+        .image-wrapper img { width: 100%; height: 100%; object-fit: cover; }
+
+        /* Tables */
+        table { width: 100%; border-collapse: collapse; margin-top: 25px; }
+        th, td { padding: 20px; text-align: left; border-bottom: 1px solid #222; }
+        th { background: #1a1a1a; color: #f7df1e; font-size: 22px; text-transform: uppercase; letter-spacing: 1px; }
+        td { color: #f8fafc; font-size: 19px; }
+
+        /* Charts */
+        .chart-container { display: flex; flex-direction: column; gap: 20px; width: 100%; }
+        .bar { display: flex; align-items: center; gap: 25px; }
+        .bar .label { flex: 0 0 220px; text-align: right; font-weight: bold; color: #f7df1e; font-size: 18px; }
+        .bar .bar-inner { background: #1a1a1a; border-radius: 20px; flex-grow: 1; height: 35px; overflow: hidden; border: 1px solid #333; }
+        .bar .bar-fill { height: 100%; background: linear-gradient(90deg, #f7df1e, #ffcc00); border-radius: 20px; box-shadow: 0 0 15px rgba(247, 223, 30, 0.3); }
+
+        /* Special Layouts */
+        .section-title-layout { text-align: center; }
+        .section-title-layout h2 { font-size: 90px; color: #f7df1e; letter-spacing: -2px; }
+        .section-title-layout hr { border: 0; height: 5px; background: #f7df1e; width: 180px; margin: 40px auto; }
+
+        .highlight-numbers-layout .number { font-size: 140px; color: #f7df1e; font-weight: 700; line-height: 1; text-shadow: 0 0 30px rgba(247, 223, 30, 0.2); }
+        
+        .full-bg-image { background-size: cover; background-position: center; }
+        .full-bg-image .overlay { position: absolute; inset: 0; background: radial-gradient(circle at center, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.95) 100%); }
+
+        /* Bleed Image Right Layout Fixes */
+        .slide-container.bleed-image-layout { align-items: start; display: grid; gap: 0; grid-template-columns: 1.2fr 0.8fr; padding: 0; }
+        .slide-container.bleed-image-layout > .content-container { padding: 80px; z-index: 2; height: 100%; display: flex; flex-direction: column; justify-content: center; }
+        .slide-container.bleed-image-layout > .image-container { height: 720px; width: 100%; overflow: hidden; border-left: 1px solid #333; }
+        .slide-container.bleed-image-layout img.bleed-image-side { height: 720px; object-fit: cover; width: 100%; opacity: 0.7; }
+
+    </style>
+</head>
+<body>
+
+<!-- Slide 1: Full Background Title -->
+<div class="slide-container full-bg-image" id="slide1" style="background-image: url('https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=2070&auto=format&fit=crop');">
+    <div class="overlay"></div>
+    <div style="text-align: left; padding-left: 40px; width: 100%;">
+        <h1 style="font-size: 110px; color: #f7df1e; line-height: 0.85; margin-bottom: 10px;">INVENTORY<br>SYSTEM</h1>
+        <p style="font-size: 36px; font-weight: 700; color: #ffffff; margin-top: 25px; letter-spacing: 1px;">Mini Project – Quản Lý Kho Hàng</p>
+        <p style="font-family: 'JetBrains Mono'; color: #888; letter-spacing: 2px;">SOFTWARE REQUIREMENTS SPECIFICATION (SRS)</p>
+        <div style="margin-top: 60px; padding: 20px 30px; border-left: 6px solid #f7df1e; background: rgba(247, 223, 30, 0.05); display: inline-block; backdrop-filter: blur(5px);">
+            <p style="margin: 0; font-weight: bold; color: #f7df1e; font-size: 22px;"><b>NHÓM 5 </b> | <del>Nơi cùng bạn cố gắng</del></p>
+        </div>
+    </div>
+</div>
+
+<!-- Slide 2: Project Intro -->
+<div class="slide-container" id="slide2">
+    <h2 class="slide-title">Giới Thiệu Dự Án</h2>
+    <div class="content-area">
+        <div class="two-column">
+            <div class="tile">
+                <h3>1.1 Mục đích</h3>
+                <p>Xây dựng hệ thống quản lý kho đơn giản chạy trên trình duyệt nhằm rèn luyện tư duy <strong>Lập trình hàm (Functional Programming)</strong>.</p>
+                <p>Loại bỏ các cấu trúc lặp <code>for</code> truyền thống, thay thế bằng các phương thức xử lý mảng hiện đại.</p>
+            </div>
+            <div class="tile">
+                <h3>Công nghệ lõi</h3>
+                <p>Khai thác tối đa sức mạnh của bộ <strong>Higher-Order Functions</strong>:</p>
+                <ul class="bullet-list">
+                    <li><code>filter()</code> &bull; <code>map()</code> &bull; <code>reduce()</code></li>
+                    <li><code>some()</code> &bull; <code>every()</code> &bull; <code>forEach()</code></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Slide 3: Scope & Constraints -->
+<div class="slide-container" id="slide3">
+    <h2 class="slide-title">Phạm vi & Giới hạn</h2>
+    <div class="content-area">
+        <div class="bullet-list" style="max-width: 900px; margin: 0 auto;">
+            <ul>
+                <li><i class="fa-solid fa-microchip"></i> <strong>Môi trường:</strong> Browser-based, JavaScript thuần ES6+.</li>
+                <li><i class="fa-solid fa-keyboard"></i> <strong>Giao tiếp:</strong> <code>prompt()</code> để nhận lệnh và <code>alert()</code> để báo cáo.</li>
+                <li><i class="fa-solid fa-triangle-exclamation"></i> <strong>Ràng buộc kỹ thuật:</strong> Tuyệt đối không sử dụng Object.</li>
+                <li><i class="fa-solid fa-layer-group"></i> <strong>Lưu trữ:</strong> Mô hình <strong>Parallel Arrays</strong> (Mảng song song).</li>
+                <li><i class="fa-solid fa-database"></i> <strong>Database:</strong> In-memory (Dữ liệu mất khi refresh trang).</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<!-- Slide 4: Architecture (Bleed Image) -->
+<div class="slide-container bleed-image-layout" id="slide4">
+    <div class="content-container">
+        <h2 class="slide-title">Kiến thức hệ thống</h2>
+        <div class="content-area">
+            <h3>Menu Loop Control</h3>
+            <p>Sử dụng cơ chế <strong>Event Loop</strong> đơn giản qua vòng lặp <code>while(true)</code>.</p>
+            <ul class="bullet-list">
+                <li>Hiển thị Menu chức năng.</li>
+                <li>Dùng <code>switch-case</code> để phân nhánh logic.</li>
+                <li>Thoát ứng dụng khi người dùng chọn Option 7.</li>
+            </ul>
+        </div>
+    </div>
+    <div class="image-container">
+        <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=2070&auto=format&fit=crop" class="bleed-image-side" alt="Tech Architecture">
+    </div>
+</div>
+
+<!-- Slide 5: Data Structure Table -->
+<div class="slide-container" id="slide5">
+    <h2 class="slide-title">Cấu Trúc Dữ Liệu</h2>
+    <div class="content-area">
+        <p style="margin-bottom: 30px;">Dữ liệu được quản lý qua 3 mảng riêng biệt nhưng có chỉ số (index) gắn kết chặt chẽ:</p>
+        <table>
+            <thead>
+                <tr>
+                    <th>Chỉ số (i)</th>
+                    <th>names[]</th>
+                    <th>prices[]</th>
+                    <th>stocks[]</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>0</code></td>
+                    <td>iPhone 15 Pro</td>
+                    <td>1000</td>
+                    <td>5</td>
+                </tr>
+                <tr>
+                    <td><code>1</code></td>
+                    <td>Samsung S24 Ultra</td>
+                    <td>900</td>
+                    <td>0</td>
+                </tr>
+                <tr>
+                    <td><code>...</code></td>
+                    <td>...</td>
+                    <td>...</td>
+                    <td>...</td>
+                </tr>
+            </tbody>
+        </table>
+        <div style="margin-top: 30px; padding: 20px; border: 1px dashed #f7df1e; color: #f7df1e; font-family: 'JetBrains Mono';">
+            // QUY TẮC: names.length === prices.length === stocks.length
+        </div>
+    </div>
+</div>
+
+<!-- Slide 6: Use Case List Icons -->
+<div class="slide-container" id="slide6">
+    <h2 class="slide-title">Danh Sách Use Case</h2>
+    <div class="content-area">
+        <div class="tiled-content">
+            <div class="tile">
+                <div class="icon"><i class="fa-solid fa-gem"></i></div>
+                <h3>Lọc Hàng</h3>
+                <p>Sản phẩm cao cấp > 500$</p>
+            </div>
+            <div class="tile">
+                <div class="icon"><i class="fa-solid fa-check-double"></i></div>
+                <h3>Kiểm Định</h3>
+                <p>Kiểm tra tồn kho & giá sàn</p>
+            </div>
+            <div class="tile">
+                <div class="icon"><i class="fa-solid fa-chart-line"></i></div>
+                <h3>Vốn Hóa</h3>
+                <p>Tổng giá trị tài sản kho</p>
+            </div>
+            <div class="tile">
+                <div class="icon"><i class="fa-solid fa-percent"></i></div>
+                <h3>Giảm Giá</h3>
+                <p>Chiến dịch ưu đãi -10%</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Slide 7: UC1 Section -->
+<div class="slide-container" id="slide7">
+    <div class="section-title-layout">
+        <h2 style="font-size: 60px; color: #888;">USE CASE 01</h2>
+        <hr>
+        <p style="font-size: 48px; color: #f7df1e; font-weight: 700;">LỌC HÀNG CAO CẤP</p>
+    </div>
+</div>
+
+<!-- Slide 8: UC1 Logic -->
+<div class="slide-container" id="slide8">
+    <h2 class="slide-title">UC 1: Thuật Toán Filter</h2>
+    <div class="content-area">
+        <div class="two-column">
+            <div>
+                <h3>Logic xử lý</h3>
+                <p>Dùng <code>filter</code> trên mảng <code>names</code> nhưng điều kiện lọc dựa trên index tương ứng của mảng <code>prices</code>.</p>
+                <div class="code-block">
+let premium = names.filter((name, i) => {
+    return prices[i] > 500;
+});</div>
+                <p>Kết quả trả về một mảng mới chứa tên các sản phẩm đắt tiền.</p>
+            </div>
+            <div class="image-wrapper">
+                <img src="https://images.unsplash.com/photo-1542831371-29b0f74f9713?q=80&w=2070&auto=format&fit=crop" alt="Code Visualization">
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Slide 9: UC2 Checking -->
+<div class="slide-container" id="slide9">
+    <h2 class="slide-title">Use Case 2: Kiểm Định</h2>
+    <div class="content-area">
+        <div class="two-column" style="align-items: center;">
+            <div style="width: 350px; height: 350px; border-radius: 50%; overflow: hidden; border: 8px solid #f7df1e; box-shadow: 0 0 50px rgba(247, 223, 30, 0.2);">
+                <img src="https://images.unsplash.com/photo-1507413245164-6160d8298b31?q=80&w=2070&auto=format&fit=crop" style="width:100%; height:100%; object-fit: cover;" alt="Analysis">
+            </div>
+            <div>
+                <h3>Xác thực dữ liệu</h3>
+                <p>Sử dụng <code>some</code> và <code>every</code> để kiểm tra tính đúng đắn của toàn kho hàng.</p>
+                <div class="code-block" style="font-size: 16px;">
+// Có hàng nào hết không?
+let isOut = stocks.some(s => s === 0);
+
+// Giá có hợp lệ (>100) hết không?
+let isVal = prices.every(p => p > 100);</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Slide 10: UC3 Capitalization -->
+<div class="slide-container" id="slide10">
+    <h2 class="slide-title">Use Case 3: Vốn Hóa</h2>
+    <div class="content-area">
+        <div class="two-column highlight-numbers-layout">
+            <div style="text-align: center;">
+                <div class="number">REDUCE</div>
+                <p style="color: #f7df1e; font-weight: bold; margin-top: 10px;">Aggregator Pattern</p>
+            </div>
+            <div>
+                <h3>Tính toán tài sản</h3>
+                <p>Dùng <code>reduce</code> để tích lũy giá trị nhân giữa đơn giá và số lượng.</p>
+                <div class="code-block">
+let totalValue = prices.reduce((acc, p, i) => {
+    return acc + (p * stocks[i]);
+}, 0);</div>
+                <p style="margin-top: 20px;">Hàm này quét qua toàn bộ kho và trả về <strong>duy nhất 1 con số</strong> đại diện cho tổng vốn hóa.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Slide 11: UC4 Discount -->
+<div class="slide-container" id="slide11">
+    <h2 class="slide-title">Use Case 4: Giảm Giá</h2>
+    <div class="content-area">
+        <div class="two-column">
+            <div>
+                <h3>Mutate Original Data</h3>
+                <p>Chiến dịch Marketing yêu cầu giảm giá trực tiếp 10% vào dữ liệu gốc.</p>
+                <div class="code-block">
+prices.forEach((price, i) => {
+    prices[i] = price * 0.9;
+});</div>
+                <p style="color: #f7df1e;">* Quan trọng: <code>forEach</code> không trả về mảng mới, nó tác động trực tiếp lên mảng hiện có.</p>
+            </div>
+            <div class="tile" style="display: flex; flex-direction: column; justify-content: center; border-color: #ff4444;">
+                <h3 style="color: #ff4444;">Cảnh báo đồng bộ</h3>
+                <p>Khi cập nhật giá, chỉ số index phải được bảo toàn tuyệt đối để không làm sai lệch dữ liệu với mảng <code>names</code> và <code>stocks</code>.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Slide 12: UC5 Query -->
+<div class="slide-container" id="slide12">
+    <h2 class="slide-title">Use Case 5: Truy Vấn</h2>
+    <div class="content-area">
+        <div class="two-column">
+             <div class="image-wrapper">
+                <img src="https://static.vietnix.vn/wp-content/uploads/2022/09/query-haot-dong-nhu-the-nao.webp" alt="Search Database">
+            </div>
+            <div>
+                <h3>Map + Filter Chaining</h3>
+                <p>Kỹ thuật gom dữ liệu vào Object ảo để thực hiện tìm kiếm phức tạp:</p>
+                <div class="code-block" style="font-size: 15px;">
+let search = names.map((n, i) => ({
+    n, p: prices[i], s: stocks[i]
+}))
+.filter(item => item.n.includes(keyword));</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Slide 13: UC6 Report -->
+<div class="slide-container" id="slide13">
+    <h2 class="slide-title">Use Case 6: Báo Cáo</h2>
+    <div class="content-area">
+        <h3>Chuyển đổi trạng thái (Mapping)</h3>
+        <p>Biến đổi dữ liệu thô (số lượng) thành thông tin có nghĩa (văn bản):</p>
+        <div class="code-block" style="font-size: 24px; padding: 40px;">
+let report = stocks.map(s => 
+    s > 0 ? "Còn hàng" : "Hết hàng"
+);</div>
+        <p style="margin-top: 20px;">Dễ dàng hiển thị cho người dùng cuối mà không cần xử lý logic phức tạp tại tầng View.</p>
+    </div>
+</div>
+
+<!-- Slide 14: Exceptions -->
+<div class="slide-container" id="slide14">
+    <h2 class="slide-title">Xử Lý Ngoại Lệ</h2>
+    <div class="content-area">
+        <div class="two-column tiled">
+            <div class="tile">
+                <i class="fa-solid fa-keyboard icon"></i>
+                <h3>Input Validation</h3>
+                <p>Kiểm tra <code>isNaN()</code> khi người dùng nhập giá hoặc số lượng qua prompt.</p>
+            </div>
+            <div class="tile">
+                <i class="fa-solid fa-ban icon"></i>
+                <h3>Empty State</h3>
+                <p>Xử lý trường hợp kho hàng rỗng để tránh lỗi khi dùng <code>reduce()</code> hoặc <code>map()</code>.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Slide 15: Evaluation -->
+<div class="slide-container" id="slide15">
+    <h2 class="slide-title">Tiêu Chí Đánh Giá</h2>
+    <div class="content-area">
+        <div class="chart-container">
+            <div class="bar">
+                <div class="label">Logic (HOF)</div>
+                <div class="bar-inner"><div class="bar-fill" style="width: 100%;"></div></div>
+            </div>
+            <div class="bar">
+                <div class="label">Clean Code</div>
+                <div class="bar-inner"><div class="bar-fill" style="width: 85%;"></div></div>
+            </div>
+            <div class="bar">
+                <div class="label">Sync Accuracy</div>
+                <div class="bar-inner"><div class="bar-fill" style="width: 95%;"></div></div>
+            </div>
+        </div>
+        <p style="margin-top: 40px; text-align: center; color: #f7df1e; font-weight: bold; font-size: 24px;">KẾT THÚC BÁO CÁO</p>
+    </div>
+</div>
+
+</body>
+</html>
