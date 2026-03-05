@@ -1,4 +1,4 @@
-let tkdangnhap = [
+let user = [
 ]
 function dangnhap(event) {
     let emailInput = document.getElementById("email");
@@ -11,8 +11,8 @@ function dangnhap(event) {
         alert(`Nhạp lại mk`)
     } else {
             let tkmk = { email: email, password: password }
-    tkdangnhap.push(tkmk)
-    console.log(tkdangnhap);
+    user.push(tkmk)
+    console.log("user",user);
     }
 
 
