@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Advanced Theme Switcher Demo</title>
+    <link rel="stylesheet" href="./style.css" />
+    <script>
+      (function () {
+        try {
+          const cr = localStorage.getItem('theme');
+          const qq = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          if (cr === 'an' || (!cr && qq)) {
+            document.documentElement.classList.add('an');
+          } else {
+            document.documentElement.classList.remove('an');
+          }
+        } catch (cj) {
+          console.warn(cj);
+        }
+      })();
+    </script>
+  </head>
+  <body>
+    <header class="aa">
+      <div class="ab">
+        <h1>Rikkei Tech Hub</h1>
+        <div class="ac">
+          <button id="ba" class="ad" aria-label="Toggle Theme" role="switch">
+            <div class="ae" id="bb">
+              <svg id="bc" class="af ag" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="4"></circle>
+                <path d="M12 2v2"></path>
+                <path d="M12 20v2"></path>
+                <path d="m4.93 4.93 1.41 1.41"></path>
+                <path d="m17.66 17.66 1.41 1.41"></path>
+                <path d="M2 12h2"></path>
+                <path d="M20 12h2"></path>
+                <path d="m6.34 17.66-1.41 1.41"></path>
+                <path d="m19.07 4.93-1.41 1.41"></path>
+              </svg>
+              <svg id="bd" class="af ag" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>
+              </svg>
+            </div>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <main class="ah">
+      <article class="ai">
+        <h2 class="aj">Tương Lai Của Công Nghệ AI Trợ Lý</h2>
+        <p class="ak">Đăng ngày 20 Tháng 3, 2026 bởi Đội ngũ Rikkei Tech</p>
+        
+        <div class="al">
+          <img 
+            src="https://images.unsplash.com/photo-1620712943543-bcc4688e7485?auto=format&fit=crop&w=1200&q=80" 
+            alt="AI Technology Future"
+            loading="lazy"
+          />
+        </div>
+        
+        <div class="am">
+          <p>
+            Trí tuệ nhân tạo (AI) đang phát triển với một tốc độ chóng mặt, và không thể chối cãi rằng nó đang thay đổi hoàn toàn cách chúng ta làm việc và giải trí. Trong bối cảnh đó, điều quan trọng là nền tảng tiếp nhận thông tin cần phải mang lại được sự thân thiện tối đa cho người dùng.
+          </p>
+          <p>
+            Đây là trang web demo thể hiện sức mạnh của Advanced Theme Switcher, giải quyết triệt để vấn đề loé mắt khi đọc tin tức thời gian dài, hoặc FOUC (trang chớp trắng) không mong muốn. Mọi trải nghiệm ở trang web này đều được thiết kế chuyên dụng cho lập trình viên làm việc ban đêm. Chế độ mà bạn vừa lựa chọn đã được lưu lại tự động một cách an toàn.
+          </p>
+        </div>
+      </article>
+    </main>
+
+    <script src="./script.js"></script>
+  </body>
+</html>

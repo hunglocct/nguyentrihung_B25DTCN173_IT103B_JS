@@ -1,0 +1,198 @@
+:root {
+  --da: #f8fafc;
+  --db: #0f172a;
+  --dc: #64748b;
+  --dd: #ffffff;
+  --de: #e2e8f0;
+  --df: #ffffff;
+  --dg: #e2e8f0;
+  --dh: #3b82f6;
+  --di: #eab308;
+  --dj: #f1f5f9;
+  --dk: background-color 0.4s ease, color 0.4s ease, border-color 0.4s ease, fill 0.4s ease;
+}
+
+html.an {
+  --da: #0f172a;
+  --db: #f8fafc;
+  --dc: #94a3b8;
+  --dd: #1e293b;
+  --de: #334155;
+  --df: #1e293b;
+  --dg: #334155;
+  --dh: #60a5fa;
+  --di: #f8fafc;
+  --dj: #334155;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  background-color: var(--da);
+  color: var(--db);
+  transition: var(--dk);
+  line-height: 1.6;
+  min-height: 100vh;
+}
+
+.aa {
+  background-color: var(--dd);
+  border-bottom: 1px solid var(--de);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  transition: var(--dk);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+
+.ab {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 1rem 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.aa h1 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--dh);
+  letter-spacing: -0.5px;
+}
+
+.ad {
+  background: var(--dj);
+  border: 1px solid var(--de);
+  cursor: pointer;
+  width: 64px;
+  height: 32px;
+  border-radius: 16px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: 4px;
+  transition: background-color 0.4s ease, border-color 0.4s ease;
+  view-transition-name: ad;
+}
+
+.ad:focus-visible {
+  outline: 2px solid var(--dh);
+  outline-offset: 2px;
+}
+
+.ae {
+  width: 24px;
+  height: 24px;
+  background-color: var(--dd);
+  border-radius: 50%;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--di);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  transition: transform 0.4s cubic-bezier(0.4, 0.0, 0.2, 1), background-color 0.4s ease;
+  transform: translateX(0);
+  view-transition-name: ae;
+}
+
+html.an .ae {
+  transform: translateX(30px);
+}
+
+.af {
+  width: 14px;
+  height: 14px;
+  position: absolute;
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.af.ag {
+  opacity: 0;
+  transform: scale(0.5) rotate(-90deg);
+  pointer-events: none;
+}
+
+.ah {
+  max-width: 900px;
+  margin: 3rem auto;
+  padding: 0 1.5rem;
+}
+
+.ai {
+  background-color: var(--df);
+  border: 1px solid var(--dg);
+  border-radius: 12px;
+  padding: 2.5rem;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(0, 0, 0, 0.025);
+  transition: var(--dk);
+}
+
+.aj {
+  font-size: 2.2rem;
+  font-weight: 800;
+  line-height: 1.25;
+  margin-bottom: 0.5rem;
+}
+
+.ak {
+  color: var(--dc);
+  font-size: 0.95rem;
+  margin-bottom: 1.8rem;
+}
+
+.al {
+  width: 100%;
+  border-radius: 8px;
+  overflow: hidden;
+  margin-bottom: 2rem;
+}
+
+.al img {
+  width: 100%;
+  display: block;
+  object-fit: cover;
+  transition: opacity 0.3s ease;
+}
+
+.am {
+  font-size: 1.1rem;
+}
+
+.am p {
+  margin-bottom: 1.5rem;
+}
+
+.am p:last-child {
+  margin-bottom: 0;
+}
+
+@media (max-width: 600px) {
+  .aj {
+    font-size: 1.8rem;
+  }
+  .ai {
+    padding: 1.5rem;
+  }
+  .ah {
+    margin: 2rem auto;
+  }
+}
+
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+::view-transition-old(root) {
+  z-index: 1;
+}
+::view-transition-new(root) {
+  z-index: 2;
+}
