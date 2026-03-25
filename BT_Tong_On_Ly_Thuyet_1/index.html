@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Spotify Mini</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="container">
+
+    <h1 id="formTitle">🎵 Thêm bài hát</h1>
+
+    <div class="form">
+        <input type="text" id="title" placeholder="Tên bài hát">
+        <input type="text" id="artist" placeholder="Ca sĩ">
+        <button onclick="addMus()" id="submitBtn">Thêm</button>
+        
+        <div class="err" style="color: red; display: none;">Không được để trống bất kì cái nào</div>
+    </div>
+
+    <input type="text" id="search" placeholder="🔍 Tìm theo tên bài hát..." oninput="searchSong()">
+
+    <table>
+        <thead>
+            <t>
+                <th>ID</th>
+                <th>Tên bài hát</th>
+                <th>Ca sĩ</th>
+            <th>Chuc nang</th>
+        </thead>
+        <tbody id="songTable">
+         
+        </tbody>
+    </table>
+
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
